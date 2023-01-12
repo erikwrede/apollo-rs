@@ -343,13 +343,13 @@ pub struct OutputType {
 }
 
 #[derive(Diagnostic, Debug, Error, Clone, Hash, PartialEq, Eq)]
-#[error("`{}` field must return an output type", self.name)]
+#[error("`{}` must be of an object type", self.name)]
 #[diagnostic(
     code("apollo-compiler validation error"),
-    help("Union members must be of base Object Type. `{}` is of `{}` type", self.name, self.ty)
+    help("{} `{}` is of `{}` type", self.help, self.name, self.ty),
 )]
 pub struct ObjectType {
-    // union member
+    // current field or union member that must be of Object Type
     pub name: String,
     // actual type
     pub ty: &'static str,
@@ -359,6 +359,8 @@ pub struct ObjectType {
 
     #[label("this is of `{}` type", self.ty)]
     pub definition: SourceSpan,
+
+    pub help: String,
 }
 
 #[derive(Diagnostic, Debug, Error, Clone, Hash, PartialEq, Eq)]

@@ -53,6 +53,7 @@ pub fn check(db: &dyn ValidationDatabase) -> Vec<ApolloDiagnostic> {
                         ty: ty.ty(),
                         src: db.source_code(union_member.loc().file_id()),
                         definition: (offset, len).into(),
+                        help: "union members must be of base Object Type.".into(),
                     }))
                 }
             }

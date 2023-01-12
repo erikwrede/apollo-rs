@@ -12,6 +12,7 @@
                     5,
                 ),
             },
+            help: "union members must be of base Object Type.",
         },
     ),
 ]
